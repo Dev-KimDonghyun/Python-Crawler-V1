@@ -12,10 +12,10 @@ driver = webdriver.Chrome(service = service)
 
 import time
 
-userInputSearchValue = input('検索ワードを入力してください：')
-userInputRegionValue = input('検索エリアを日本語で正しく入力してください：')
+userInputSearchValue = input('Please enter the keyword: ')
+userInputRegionValue = input('Please enter the area: ')
 
-targetUrl = 'https://jp.indeed.com/'
+targetUrl = 'https://indeed.com/'
 
 driver.get(targetUrl)
 
@@ -38,6 +38,6 @@ def mainFunction ():
 
 
 if userInputSearchValue == '' or userInputRegionValue == '':
-    print('値を入力してください')
+    print('Please enter a value')
 else:
     mainFunction()
