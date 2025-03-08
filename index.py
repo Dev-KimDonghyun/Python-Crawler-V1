@@ -11,33 +11,23 @@ driver = webdriver.Chrome(service = service)
 # Code of Importing Modules Code by ChatGPT
 
 import time
+import json
 
-userInputSearchValue = input('Please enter the keyword: ')
-userInputRegionValue = input('Please enter the area: ')
-
-targetUrl = 'https://indeed.com/'
+targetUrl = 'https://gall.dcinside.com/mgallery/board/lists/?id=vanced&exception_mode=recommend'
 
 driver.get(targetUrl)
 
-def mainFunction ():
-    print('Loading...')
-    time.sleep(5)
-    driver.find_element(By.XPATH, '//*[@id="text-input-what"]').click()
-    time.sleep(5) 
-    driver.find_element(By.XPATH, '//*[@id="text-input-what"]').send_keys(userInputSearchValue)
-    time.sleep(5) 
-    driver.find_element(By.XPATH, '//*[@id="text-input-where"]').click()
-    time.sleep(5) 
-    driver.find_element(By.XPATH, '//*[@id="text-input-where"]').send_keys(userInputRegionValue)
-    time.sleep(5) 
-    driver.find_element(By.XPATH, '//*[@id="jobsearch"]/div/div[2]/button').click()
-    time.sleep(1)
-    element1 = driver.find_element(By.XPATH, '//*[@id="jobsearch-ViewjobPaneWrapper"]/div/div[2]/div[2]/div[1]/div/div[1]/div[1]/h2/span/text()')
-    print(element1.text)
-    driver.quit()
+postNumber = (driver.find_element(By.XPATH, '//*[@id="container"]/section[1]/article[2]/div[2]/table/tbody/tr[2]/td[1]')).text
+postTag = (driver.find_element(By.XPATH, '//*[@id="container"]/section[1]/article[2]/div[2]/table/tbody/tr[3]/td[2]')).text
+time.sleep(1)
+postTitle = (driver.find_element(By.XPATH, '//*[@id="container"]/section[1]/article[2]/div[2]/table/tbody/tr[3]/td[3]/a[1]')).text
+postWriter = (driver.find_element(By.XPATH, '//*[@id="container"]/section[1]/article[2]/div[2]/table/tbody/tr[4]/td[4]/span/em')).text
+time.sleep(1.25)
+postUploadedTime = (driver.find_element(By.XPATH, '//*[@id="container"]/section[1]/article[2]/div[2]/table/tbody/tr[3]/td[5]')).text
+time.sleep(0.6)
+postViewed = (driver.find_element(By.XPATH, '//*[@id="container"]/section[1]/article[2]/div[2]/table/tbody/tr[3]/td[6]')).text
+postRecommended = (driver.find_element(By.XPATH, '//*[@id="container"]/section[1]/article[2]/div[2]/table/tbody/tr[3]/td[7]')).text
 
-
-if userInputSearchValue == '' or userInputRegionValue == '':
-    print('Please enter a value')
-else:
-    mainFunction()
+print(postNumber, postTag, postTitle, postWriter, postUploadedTime, postViewed, postRecommended) 
+    
+driver.quit()
